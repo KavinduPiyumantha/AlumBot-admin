@@ -44,6 +44,20 @@ const router = createHashRouter([
                   return { Component: Website };
                 },
               },
+              {
+                path: "urls",
+                async lazy() {
+                  const { URLs } = await import("../pages/source/URLs");
+                  return { Component: URLs };
+                },
+              },
+              {
+                path: "files",
+                async lazy() {
+                  const { Files } = await import("@/pages/source/Files");
+                  return { Component: Files };
+                },
+              },
             ],
           },
           {

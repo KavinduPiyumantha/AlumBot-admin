@@ -8,3 +8,13 @@ export const CenterLoading = () => (
     </div>
   </div>
 );
+
+// Add a simple loading spinner to use as default export
+const Loading = () => (
+  <div className="inline-flex items-center">
+    <LoadingSvg className="w-4 h-4 fill-current" />
+    <span className="ml-2">Loading...</span>
+  </div>
+);
+
+export default Loading;

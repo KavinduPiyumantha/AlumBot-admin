@@ -92,6 +92,62 @@ declare namespace API {
     content_length: number;
   };
 
+  // File-related types
+  type LocalFile = {
+    id: number;
+    url: string;
+    origin_file_name: string;
+    file_path: string;
+    file_type: string;
+    content_length: number;
+    content_md5: string;
+    doc_status: number;
+    ctime: number;
+    mtime: number;
+  };
+  
+  type GetLocalFileListParams = {
+    page?: number;
+    page_size?: number;
+  };
+  
+  type GetLocalFileListResponse = {
+    file_list: LocalFile[];
+    total_count: number;
+  };
+  
+  type SubmitLocalFileResponse = {
+    success_count: number;
+    fail_count: number;
+    file_list: LocalFile[];
+  };
+  
+  // Isolated URL types
+  type IsolatedUrl = {
+    id: number;
+    url: string;
+    content_length: number;
+    doc_status: number;
+    ctime: number;
+    mtime: number;
+  };
+  
+  type GetIsolatedUrlListParams = {
+    page?: number;
+    page_size?: number;
+  };
+  
+  type GetIsolatedUrlListResponse = {
+    url_list: IsolatedUrl[];
+    total_count: number;
+  };
+  
+  type SubmitIsolatedUrlsResponse = {
+    success_count: number;
+    fail_count: number;
+    url_list: IsolatedUrl[];
+  };
+
   // response
   type BaseResopnse<T> = {
     retcode: number;

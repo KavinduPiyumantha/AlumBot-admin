@@ -88,3 +88,48 @@ export const uploadPicture = (
   formData.append("picture_file", file);
   return request.post(`/alumBot_api/common/upload_picture`, formData);
 };
+
+// New API function for uploading local files
+export const submitLocalFileList = (
+  formData: FormData
+): Promise<API.BaseResopnse<API.SubmitLocalFileResponse>> => {
+  return request.post(`/alumBot_api/files/submit_local_file_list`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+};
+
+// Get local file list (useful for displaying already uploaded files)
+export const getLocalFileList = (
+  params: API.GetLocalFileListParams = {}
+): Promise<API.BaseResopnse<API.GetLocalFileListResponse>> => {
+  return request.post(`/alumBot_api/files/get_local_file_list`, params);
+};
+
+// Delete local files by their IDs
+export const deleteLocalFileList = (
+  id_list: number[]
+): Promise<API.BaseResopnse<Record<string, never>>> => {
+  return request.post(`/alumBot_api/files/delete_local_file_list`, { id_list });
+};
+
+// Isolated URLs API functions
+export const submitIsolatedUrls = (
+  urls: string[]
+): Promise<API.BaseResopnse<API.SubmitIsolatedUrlsResponse>> => {
+  return request.post(`/alumBot_api/urls/submit_isolated_url_list`, { url_list: urls });
+};
+
+export const getIsolatedUrlList = (
+  params: API.GetIsolatedUrlListParams = {}
+): Promise<API.BaseResopnse<API.GetIsolatedUrlListResponse>> => {
+  return request.post(`/alumBot_api/urls/get_isolated_url_list`, params);
+};
+
+// Delete isolated URLs by their IDs
+export const deleteIsolatedUrlList = (
+  id_list: number[]
+): Promise<API.BaseResopnse<Record<string, never>>> => {
+  return request.post(`/alumBot_api/urls/delete_isolated_url_list`, { id_list });
+};
