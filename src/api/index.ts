@@ -9,28 +9,28 @@ export const adminLogin = (
   account_name: string,
   password: string
 ): Promise<API.BaseResopnse<{ token: string }>> =>
-  request.post(`/open_kf_api/login`, {
+  request.post(`/alumBot_api/account/login`, {
     account_name,
     password,
   });
 
 export const adminLogout = (account_name: string) =>
-  request.post(`/open_kf_api/logout`, {
+  request.post(`/alumBot_api/account/logout`, {
     account_name,
   });
 
 export const changeAdminPassword = (params: API.ChangeAdminPwdParams) =>
-  request.post(`/open_kf_api/update_password`, params);
+  request.post(`/alumBot_api/account/update_password`, params);
 
 export const getBotSettings = (): Promise<
   API.BaseResopnse<API.GetBotSettingsData>
-> => request.post(`/open_kf_api/get_bot_setting`);
+> => request.post(`/alumBot_api/bot_config/get_bot_setting`);
 
 export const updateBotSettings = (params: API.BotSettings) =>
-  request.post(`/open_kf_api/update_bot_setting`, params);
+  request.post(`/alumBot_api/bot_config/update_bot_setting`, params);
 
 export const submitCrawlTask = (site: string) =>
-  request.post(`/open_kf_api/submit_crawl_site`, {
+  request.post(`/alumBot_api/sitemaps/submit_crawl_site`, {
     site,
     timestamp: Math.floor(Date.now() / 1000),
   });
@@ -38,53 +38,53 @@ export const submitCrawlTask = (site: string) =>
 export const getCrawlState = (
   site: string
 ): Promise<API.BaseResopnse<{ sites_info: API.CrawlSiteInfo[] }>> =>
-  request.post(`/open_kf_api/get_crawl_site_info`, { site });
+  request.post(`/alumBot_api/sitemaps/get_crawl_site_info`, { site });
 
 export const getCrawlStateWithList = (
   site?: string
 ): Promise<API.BaseResopnse<API.GetCrawlStateWithListData>> =>
-  request.post(`/open_kf_api/get_crawl_url_list`, { site });
+  request.post(`/alumBot_api/sitemaps/get_crawl_url_list`, { site });
 
 export const getCrawlSplitDetails = (
   id: number
 ): Promise<API.BaseResopnse<{ sub_content_list: API.CrawlSplitDetail[] }>> =>
-  request.post(`/open_kf_api/get_url_sub_content_list`, { id });
+  request.post(`/alumBot_api/sitemaps/get_url_sub_content_list`, { id });
 
 export const importCrawlData = (id_list: number[]) =>
-  request.post(`/open_kf_api/add_crawl_url_list`, { id_list });
+  request.post(`/alumBot_api/sitemaps/add_crawl_url_list`, { id_list });
 
 export const deleteCrawlData = (id_list: number[]) =>
-  request.post(`/open_kf_api/delete_crawl_url_list`, { id_list });
+  request.post(`/alumBot_api/sitemaps/delete_crawl_url_list`, { id_list });
 
 export const getConversationList = (
   params: API.GetConversationListParams
 ): Promise<API.BaseResopnse<{ conversation_list: API.Conversation[] }>> =>
-  request.post(`/open_kf_api/get_user_conversation_list`, params);
+  request.post(`/alumBot_api/queries/get_user_conversation_list`, params);
 
 export const getChatLogs = (
   params: API.GetChatLogsParams,
   cancelToken?: CancelToken
 ): Promise<API.BaseResopnse<API.GetChatLogsData>> =>
-  request.post(`/open_kf_api/get_user_query_history_list`, params, {
+  request.post(`/alumBot_api/queries/get_user_query_history_list`, params, {
     cancelToken,
   });
 
 export const getInterveneRecords = (params: API.GetInterveneRecordsParams) =>
-  request.post(`/open_kf_api/get_intervene_record`, params);
+  request.post(`/alumBot_api/intervention/get_intervene_record`, params);
 
 export const addInterveneRecord = (params: API.AddInterveneRecordParams) =>
-  request.post(`/open_kf_api/add_intervene_record`, params);
+  request.post(`/alumBot_api/intervention/add_intervene_record`, params);
 
 export const updateInterveneRecord = (params: API.AddInterveneRecordParams) =>
-  request.post(`/open_kf_api/update_intervene_record`, params);
+  request.post(`/alumBot_api/intervention/update_intervene_record`, params);
 
 export const batchDeleteInterveneRecord = (id_list: number[]) =>
-  request.post(`/open_kf_api/batch_delete_intervene_record`, { id_list });
+  request.post(`/alumBot_api/intervention/batch_delete_intervene_record`, { id_list });
 
 export const uploadPicture = (
   file: File
 ): Promise<API.BaseResopnse<{ picture_url: string }>> => {
   const formData = new FormData();
   formData.append("picture_file", file);
-  return request.post(`/open_kf_api/upload_picture`, formData);
+  return request.post(`/alumBot_api/common/upload_picture`, formData);
 };
